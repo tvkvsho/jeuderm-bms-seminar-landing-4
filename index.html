@@ -132,16 +132,16 @@
       backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)
     }
 
-    .video-card{align-self:stretch;justify-self:stretch;background:#111;aspect-ratio:9/16;height:100%;max-height:none;border-radius:clamp(22px,2vw,30px);backdrop-filter:none;-webkit-backdrop-filter:none}
-    .video-card video,.video-poster-button,.video-poster-button img{width:100%;height:100%;object-fit:cover;background:#101313}
-    .video-card video{border:0}
-    .video-poster-button{display:block;position:relative;border:0;padding:0;margin:0;cursor:pointer;background:#101313;color:#fff;overflow:hidden}
+    .video-card{align-self:stretch;justify-self:stretch;background:#111;aspect-ratio:9/16;height:100%;max-height:none;border-radius:clamp(22px,2vw,30px);backdrop-filter:none;-webkit-backdrop-filter:none;touch-action:pan-y}
+    .video-card video,.video-poster,.video-poster img{width:100%;height:100%;object-fit:cover;background:#101313}
+    .video-card video{border:0;touch-action:pan-y}
+    .video-poster{display:block;position:relative;overflow:hidden;background:#101313;color:#fff;pointer-events:none;touch-action:pan-y}
     .video-card:not(.is-playing) #videoPlayer{display:none!important}
-    .video-card.is-playing .video-poster-button{display:none!important}
+    .video-card.is-playing .video-poster{display:none!important}
     .video-card.is-playing #videoPlayer{display:block!important}
-    .video-poster-button img{position:absolute;inset:0}
-    .video-poster-button::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,19,.02) 0%,rgba(7,17,19,0) 60%,rgba(7,17,19,.18) 100%);pointer-events:none}
-    .video-play{position:absolute;left:50%;top:50%;z-index:4;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;transform:translate(-50%,-50%);background:rgba(20,35,40,.72);border:1px solid rgba(255,255,255,.38);box-shadow:0 12px 30px rgba(0,0,0,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .video-poster img{position:absolute;inset:0;pointer-events:none;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+    .video-poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,19,.02) 0%,rgba(7,17,19,0) 60%,rgba(7,17,19,.18) 100%);pointer-events:none}
+    .video-play{position:absolute;left:50%;top:50%;z-index:4;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;transform:translate(-50%,-50%);background:rgba(20,35,40,.72);border:1px solid rgba(255,255,255,.38);box-shadow:0 12px 30px rgba(0,0,0,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:pointer;pointer-events:auto;touch-action:manipulation;padding:0}
     .video-play::before{content:"";display:block;margin-left:4px;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid #fff}
     .video-caption{position:absolute;left:12px;top:12px;z-index:5;padding:8px 10px;border-radius:999px;background:rgba(17,27,30,.66);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:8.5px;font-weight:880;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(10px);pointer-events:none}
 
@@ -204,7 +204,10 @@
       .right-column{display:contents}
       .headline-tile{order:1;flex:none;padding:20px;border-radius:21px}.right-sub{font-size:13px}
       .date-tile{order:2;flex:none;min-height:112px;padding:16px 18px;border-radius:21px}.date-big{font-size:65px}.date-details b{font-size:20px}
-      .video-card{order:3;flex:none;width:min(74vw,300px);height:auto;align-self:center;max-height:none;border-radius:24px;box-shadow:0 18px 48px rgba(34,64,82,.15)}
+      .video-card{order:3;flex:none;width:min(74vw,300px);height:auto;align-self:center;max-height:none;border-radius:24px;box-shadow:0 18px 48px rgba(34,64,82,.15);touch-action:pan-y}
+      .video-poster{touch-action:pan-y;pointer-events:none}
+      .video-play{pointer-events:auto;touch-action:manipulation;backdrop-filter:none;-webkit-backdrop-filter:none}
+      .video-card video{touch-action:pan-y}
       .benefits-tile{order:4;flex:none;height:auto!important;min-height:max-content!important;padding:19px 19px 26px;border-radius:21px;overflow:visible}
       .benefit-kicker{font-size:28px}.benefit-list{gap:9px}.benefit-list li{font-size:12px;grid-template-columns:24px 1fr;padding:11px}.benefit-list .icon{font-size:17px}
       .care-tags{margin-top:14px;padding-top:0}.care-tags span{font-size:8px;padding:8px 12px}.hero-cta{height:50px;margin-top:15px}
@@ -282,10 +285,10 @@
         <div class="bento">
           <article class="tile video-card" id="videoCard" aria-label="Відео процедури BMS з Jeuderm">
             <div class="video-caption">Practical demo • 00:37</div>
-            <button class="video-poster-button" id="videoLaunch" type="button" aria-label="Відтворити відео процедури">
+            <div class="video-poster" id="videoPoster">
               <img src="assets/video-poster.jpg" alt="Превʼю практичної процедури BMS з Jeuderm" loading="eager" decoding="async" />
-              <span class="video-play" aria-hidden="true"></span>
-            </button>
+              <button class="video-play" id="videoLaunch" type="button" aria-label="Відтворити відео процедури"></button>
+            </div>
             <video id="videoPlayer" controls playsinline preload="none" controlslist="nodownload" disablepictureinpicture poster="assets/video-poster.jpg" data-src="assets/bms-seminar.mp4">
               Ваш браузер не підтримує відтворення відео.
             </video>
