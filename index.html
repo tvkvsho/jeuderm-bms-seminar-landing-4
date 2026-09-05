@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f8fafc" />
+  <title>Jeuderm × BMS — 24 вересня, Кропивницький</title>
+  <meta name="description" content="Практичний семінар Jeuderm × BMS у Кропивницькому: готові комбіновані протоколи, практичний показ, Test-Zone, сертифікат та спеціальні B2B-умови." />
+  <style>
+    :root{
+      --paper:#fbfcfd;
+      --paper-2:#f3f7f8;
+      --ink:#122027;
+      --muted:#65737a;
+      --line:#dbe5e8;
+      --field:#f2f6f7;
+      --accent:#287786;
+      --accent-2:#4f8ea5;
+      --accent-dark:#165666;
+      --ice:#dceef2;
+      --lilac:#dfe2f2;
+      --slate:#213944;
+      --gold:#a98255;
+      --success:#2e694b;
+      --success-bg:#edf8f2;
+      --error:#a62d3e;
+      --error-bg:#fff1f3;
+      --shadow:0 24px 70px rgba(34,70,79,.13);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,Arial,sans-serif}
+    body{min-height:100svh}
+    button,input{font:inherit}
+    button{touch-action:manipulation}
+    img,video{display:block;max-width:100%}
+
+    .page{height:100svh;min-height:720px;overflow:hidden;background:var(--paper)}
+    .split{height:100%;display:grid;grid-template-columns:minmax(0,47%) minmax(0,53%)}
+
+    /* LEFT */
+    .left{
+      min-width:0;display:flex;flex-direction:column;position:relative;z-index:3;
+      padding:clamp(26px,3.2vw,52px) clamp(34px,4.5vw,72px) clamp(24px,2.8vw,44px);
+      background:
+        radial-gradient(circle at 13% 0%,rgba(40,119,134,.07),transparent 26%),
+        linear-gradient(180deg,#ffffff 0%,#fbfcfd 100%);
+      border-right:1px solid var(--line);
+    }
+    .brands{display:flex;align-items:center;gap:14px;min-height:40px}
+    .brands .deluxe{width:clamp(130px,11.3vw,180px);height:auto}
+    .brands .rule{width:1px;height:28px;background:var(--line)}
+    .brands .jeuderm{width:clamp(96px,8.5vw,134px);height:auto;filter:invert(1);opacity:.88}
+
+    .copy{margin-top:clamp(24px,3.9vh,48px);max-width:650px}
+    .eyebrow{font-size:11px;line-height:1;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    h1{margin:0;font-size:clamp(34px,3.35vw,57px);line-height:.99;letter-spacing:-.055em;font-weight:800;max-width:650px}
+
+    .date-row{display:flex;align-items:center;gap:16px;margin-top:clamp(17px,2.4vh,27px)}
+    .date-num{font-size:clamp(62px,6.1vw,94px);font-weight:860;line-height:.78;letter-spacing:-.075em;color:var(--accent)}
+    .date-meta{padding-top:3px}
+    .date-meta b{display:block;font-size:clamp(18px,1.6vw,25px);line-height:1;letter-spacing:-.025em}
+    .date-meta .city{display:block;margin-top:6px;font-size:12px;font-weight:900;letter-spacing:.11em;color:var(--accent-dark)}
+    .date-meta .format{display:block;margin-top:4px;font-size:9px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+
+    .value-card{
+      margin-top:clamp(16px,2.2vh,23px);max-width:590px;padding:15px 17px 15px 18px;border-radius:16px;
+      background:linear-gradient(135deg,rgba(220,238,242,.72),rgba(255,255,255,.82));
+      border:1px solid #d8e8eb;box-shadow:0 10px 25px rgba(31,91,104,.06);position:relative;overflow:hidden;
+    }
+    .value-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent),#6ba6b5)}
+    .value-card p{margin:0;font-size:clamp(13.5px,1.12vw,16.5px);line-height:1.42;font-weight:650;color:#2f454e}
+    .value-card strong{color:var(--accent-dark);font-weight:840}
+
+    .lead-wrap{margin-top:auto;max-width:575px;padding-top:20px}
+    .form-title{margin:0 0 10px;font-size:13.5px;font-weight:760;color:#334349}
+    .form{display:grid;gap:10px}
+    .control{display:grid;gap:6px}
+    .field{
+      width:100%;height:52px;border:1px solid #dee7ea;background:var(--field);border-radius:12px;
+      padding:0 15px;outline:none;color:var(--ink);transition:.18s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)
+    }
+    .field::placeholder{color:#87959b}
+    .field:hover{border-color:#c9d9dd}
+    .field:focus{background:#fff;border-color:#75aeb9;box-shadow:0 0 0 4px rgba(40,119,134,.085)}
+    .field.invalid{border-color:#d56d7d;background:#fff8f9;box-shadow:0 0 0 4px rgba(166,45,62,.06)}
+    .error-text{font-size:11px;line-height:1.25;color:var(--error);display:none}
+    .error-text.show{display:block}
+
+    .cta{
+      height:54px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--accent-dark) 0%,var(--accent) 100%);
+      color:#fff;font-weight:840;letter-spacing:.02em;cursor:pointer;transition:.18s ease;box-shadow:0 13px 28px rgba(26,95,109,.18)
+    }
+    .cta:hover{transform:translateY(-1px);box-shadow:0 16px 32px rgba(26,95,109,.23)}
+    .cta:active{transform:translateY(0)}
+    .cta:disabled{cursor:wait;opacity:.72;transform:none;box-shadow:none}
+    .form-note{display:flex;justify-content:space-between;gap:14px;margin-top:9px;font-size:11px;line-height:1.3;color:var(--muted)}
+    .form-note strong{color:var(--accent-dark)}
+
+    .status{display:none;margin-top:12px;border-radius:14px;padding:14px 15px;font-size:12px;line-height:1.4}
+    .status.show{display:block}
+    .status.success{background:var(--success-bg);border:1px solid #d6eadf;color:#244f38}
+    .status.error{background:var(--error-bg);border:1px solid #efcfd5;color:#7c2734}
+    .status-title{display:block;font-size:13px;font-weight:840;margin-bottom:4px}
+    .sent-data{margin-top:8px;display:grid;gap:3px;color:#456150}.sent-data b{font-weight:800}
+
+    /* RIGHT */
+    .hero{
+      min-width:0;position:relative;overflow:hidden;isolation:isolate;padding:clamp(18px,1.8vw,28px);
+      display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,1.5vw,20px);
+      background:
+        radial-gradient(circle at 12% 8%,rgba(255,255,255,.92),rgba(255,255,255,.33) 21%,transparent 44%),
+        radial-gradient(circle at 92% 12%,rgba(111,135,189,.23),transparent 36%),
+        radial-gradient(circle at 83% 92%,rgba(55,144,157,.22),transparent 42%),
+        linear-gradient(145deg,#edf5f5 0%,#dce8ec 45%,#d9ddef 100%);
+    }
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:999px;z-index:-1;pointer-events:none}
+    .hero::before{width:310px;height:310px;right:-120px;top:17%;background:rgba(255,255,255,.28)}
+    .hero::after{width:250px;height:250px;left:-95px;bottom:-80px;background:rgba(23,100,115,.08);filter:blur(3px)}
+
+    .hero-main-title{margin:0;font-size:clamp(34px,3.6vw,62px);line-height:.95;letter-spacing:-.065em;font-weight:860;max-width:900px;color:#0d171d}
+
+    .bento{
+      height:min(calc(100svh - 120px),720px);display:grid;
+      grid-template-columns:minmax(235px,312px) minmax(0,1fr);
+      gap:clamp(12px,1.2vw,18px);align-items:stretch;min-height:0;
+    }
+    .right-column{display:grid;grid-template-rows:auto auto minmax(0,1fr);gap:clamp(12px,1.2vw,18px);min-height:0}
+    .tile{
+      position:relative;overflow:hidden;border-radius:clamp(18px,1.7vw,26px);
+      border:1px solid rgba(255,255,255,.72);box-shadow:0 18px 52px rgba(34,64,82,.11),inset 0 1px 0 rgba(255,255,255,.48);
+      backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)
+    }
+
+    .video-card{align-self:stretch;justify-self:stretch;background:#111;aspect-ratio:9/16;height:100%;max-height:none;border-radius:clamp(22px,2vw,30px)}
+    .video-card video{width:100%;height:100%;object-fit:cover;background:#101313}
+    .video-caption{position:absolute;left:12px;top:12px;z-index:3;padding:8px 10px;border-radius:999px;background:rgba(17,27,30,.66);border:1px solid rgba(255,255,255,.22);color:#fff;font-size:8.5px;font-weight:880;letter-spacing:.1em;text-transform:uppercase;backdrop-filter:blur(10px);pointer-events:none}
+
+    .headline-tile{padding:clamp(18px,1.8vw,27px);background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,255,255,.58))}
+    .right-kicker{font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+    .right-title{margin-top:8px;font-size:clamp(24px,2.05vw,35px);line-height:.98;letter-spacing:-.05em;font-weight:810;max-width:440px}
+    .right-sub{margin:10px 0 0;font-size:clamp(11.5px,.95vw,14px);line-height:1.42;color:#5a6b72;max-width:500px}
+
+    .date-tile{min-height:118px;padding:clamp(15px,1.5vw,22px);display:grid;grid-template-columns:auto 1fr;align-items:center;gap:15px;color:#fff;background:linear-gradient(135deg,#1c6876 0%,#315b88 100%)}
+    .date-tile::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;bottom:-78px;background:rgba(255,255,255,.11)}
+    .date-big{font-size:clamp(55px,4.7vw,78px);line-height:.76;font-weight:870;letter-spacing:-.08em}
+    .date-details b{display:block;font-size:clamp(16px,1.3vw,21px);line-height:1}.date-details .city{display:block;margin-top:5px;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+    .date-details .seminar{display:inline-block;margin-top:7px;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.13);font-size:7.5px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#fff}
+
+    .benefits-tile{min-height:0;padding:clamp(17px,1.55vw,24px);background:linear-gradient(145deg,rgba(255,255,255,.88),rgba(245,249,251,.68));display:flex;flex-direction:column}
+    .benefit-kicker{font-size:clamp(16px,1.25vw,28px);font-weight:860;letter-spacing:-.035em;color:#0e171d}
+    .benefit-list{margin:14px 0 0;display:grid;gap:10px;list-style:none;padding:0}
+    .benefit-list li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;align-items:start;padding:11px 12px;border-radius:14px;background:linear-gradient(135deg,#edf4f7 0%,#efedf8 100%);border:1px solid #d6e2e8;box-shadow:inset 0 1px 0 rgba(255,255,255,.6);font-size:clamp(10.5px,.88vw,13px);line-height:1.24;font-weight:680;color:#24414a}
+    .benefit-list .icon{font-size:14px;line-height:1.1;transform:translateY(1px)}
+    .benefit-list strong{font-weight:850;color:#165666}
+    .benefit-list li.b2b{background:linear-gradient(135deg,#e8f2f4 0%,#e9e8f5 100%);border-color:#d3e2e7}
+    .care-tags{margin-top:auto;padding-top:14px;display:flex;gap:9px;flex-wrap:wrap}
+    .care-tags span{padding:8px 16px;border-radius:999px;background:#edf4f6;border:1px solid #d9e5e8;color:#547079;font-size:12px;font-weight:900;letter-spacing:.11em;text-transform:uppercase}
+    .hero-cta{width:100%;height:46px;margin-top:12px;border:0;border-radius:12px;background:#172d36;color:#fff;cursor:pointer;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;transition:.18s ease}
+    .hero-cta:hover{background:var(--accent);transform:translateY(-1px)}
+
+    .hp{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:-9999px!important}
+
+    @media (max-height:780px) and (min-width:901px){
+      .page{min-height:680px}.left{padding-top:23px;padding-bottom:21px}.copy{margin-top:22px}
+      h1{font-size:clamp(31px,3vw,50px)}.date-num{font-size:clamp(56px,5.4vw,80px)}
+      .value-card{margin-top:13px;padding:12px 15px}.value-card p{font-size:13px}
+      .lead-wrap{padding-top:13px}.field{height:46px}.cta{height:48px}
+      .hero{padding:12px}.hero-main-title{font-size:clamp(31px,3vw,52px)}.bento{gap:9px;grid-template-columns:minmax(205px,280px) minmax(0,1fr);height:min(calc(100svh - 106px),650px)}
+      .right-column{gap:9px}.headline-tile{padding:15px}.right-sub{margin-top:7px;font-size:11px}
+      .date-tile{min-height:101px;padding:13px}.date-big{font-size:58px}
+      .benefits-tile{padding:14px}.benefit-kicker{font-size:14px}.benefit-list{gap:7px;margin-top:9px}.benefit-list li{padding:8px 9px;font-size:10.5px}.benefit-list li.b2b{padding:8px 9px}.care-tags{padding-top:8px}.care-tags span{font-size:10px;padding:7px 12px}.hero-cta{height:40px;margin-top:8px}
+    }
+
+    @media (max-width:900px){
+      .page{height:auto;min-height:100svh;overflow:visible}.split{grid-template-columns:1fr}
+      .left{min-height:100svh;border-right:0;border-bottom:1px solid var(--line);padding:28px 24px 34px}
+      .copy{margin-top:40px}h1{font-size:clamp(42px,10.4vw,62px)}.date-num{font-size:82px}.lead-wrap{margin-top:44px;max-width:none}
+      .hero{padding:18px}.hero-main-title{font-size:clamp(34px,7vw,56px)}.bento{height:auto;grid-template-columns:minmax(180px,.75fr) minmax(0,1.25fr);align-items:stretch}
+      .right-column{gap:12px}.video-card{max-height:none;align-self:start}
+    }
+
+    @media (max-width:620px){
+      .left{min-height:auto;padding:22px 19px 28px}.brands{gap:12px}.brands .deluxe{width:140px}.brands .jeuderm{width:102px}.brands .rule{height:25px}
+      .copy{margin-top:32px}h1{font-size:39px}.date-row{margin-top:21px}.date-num{font-size:72px}.date-meta b{font-size:20px}
+      .value-card{margin-top:17px;padding:14px 15px 14px 17px}.value-card p{font-size:14px}
+      .lead-wrap{margin-top:34px;padding-top:0}.form-note{display:block}.form-note strong{display:block;margin-top:3px}
+      .hero{padding:12px;background:linear-gradient(155deg,#eef6f6 0%,#dde7ec 47%,#dfe0f0 100%)}
+      .hero-main-title{font-size:clamp(32px,9.6vw,52px)}
+      .bento{display:flex;flex-direction:column;gap:11px;height:auto}
+      .right-column{display:contents}
+      .headline-tile{order:1;padding:20px;border-radius:21px}.right-sub{font-size:13px}
+      .date-tile{order:2;min-height:112px;padding:16px 18px;border-radius:21px}.date-big{font-size:65px}.date-details b{font-size:20px}
+      .video-card{order:3;width:min(74vw,300px);align-self:center;max-height:none;border-radius:24px;box-shadow:0 18px 48px rgba(34,64,82,.15)}
+      .benefits-tile{order:4;padding:19px;border-radius:21px}.benefit-kicker{font-size:28px}.benefit-list{gap:9px}.benefit-list li{font-size:12px;grid-template-columns:24px 1fr;padding:11px}.benefit-list .icon{font-size:17px}
+      .care-tags{padding-top:13px}.care-tags span{font-size:8px;padding:8px 12px}.hero-cta{height:50px;margin-top:15px}
+    }
+
+    @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="split">
+      <section class="left" aria-label="Реєстрація на практичний семінар Jeuderm та BMS">
+        <div class="brands" aria-label="Deluxe Cosmetics та Jeuderm">
+          <img class="deluxe" src="assets/deluxe-logo.webp" alt="Deluxe Cosmetics" />
+          <span class="rule" aria-hidden="true"></span>
+          <img class="jeuderm" src="assets/jeuderm-logo.png" alt="Jeuderm" />
+        </div>
+
+        <div class="copy">
+          <div class="eyebrow">JEUDERM × BMS</div>
+          <h1>Більше можливостей<br>від процедури,<br>яку ви вже проводите</h1>
+
+          <div class="date-row" aria-label="24 вересня, Кропивницький">
+            <div class="date-num">24</div>
+            <div class="date-meta">
+              <b>ВЕРЕСНЯ</b>
+              <span class="city">КРОПИВНИЦЬКИЙ</span>
+              <span class="format">Practical Seminar</span>
+            </div>
+          </div>
+
+          <div class="value-card">
+            <p><strong>Готові комбіновані протоколи, практична демонстрація та рішення</strong>, які допоможуть розширити меню процедур і підвищити цінність кожного сеансу.</p>
+          </div>
+        </div>
+
+        <div class="lead-wrap" id="registration">
+          <p class="form-title">Залиште контакти, щоб забронювати місце:</p>
+          <form class="form" id="leadForm" novalidate>
+            <div class="control">
+              <input class="field" id="name" name="name" autocomplete="name" placeholder="Ім’я*" maxlength="50" aria-describedby="nameError" />
+              <div class="error-text" id="nameError" role="alert"></div>
+            </div>
+            <div class="control">
+              <input class="field" id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="Телефон*  +380 XX XXX XX XX" maxlength="24" aria-describedby="phoneError" />
+              <div class="error-text" id="phoneError" role="alert"></div>
+            </div>
+            <input class="hp" type="text" name="company_website" id="companyWebsite" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button class="cta" id="submitBtn" type="submit">ЗАБРОНЮВАТИ МІСЦЕ</button>
+          </form>
+          <div class="form-note" id="formNote">
+            <span>Участь за попередньою реєстрацією</span>
+            <strong>• Кількість місць обмежена</strong>
+          </div>
+
+          <div class="status success" id="successBox" role="status" aria-live="polite">
+            <span class="status-title">Дякуємо! Ваше місце попередньо заброньовано 🤍</span>
+            Наша команда зв’яжеться з вами для підтвердження участі.
+            <div class="sent-data">
+              <span><b>Ім’я:</b> <span id="sentName"></span></span>
+              <span><b>Телефон:</b> <span id="sentPhone"></span></span>
+            </div>
+          </div>
+
+          <div class="status error" id="sendErrorBox" role="alert" aria-live="assertive">
+            <span class="status-title">Не вдалося відправити заявку.</span>
+            Перевірте інтернет-з’єднання та спробуйте ще раз.
+          </div>
+        </div>
+      </section>
+
+      <section class="hero" aria-label="Практичний семінар Jeuderm та BMS">
+        <h2 class="hero-main-title">Підсилюйте можливості БМС<br>разом із Jeuderm</h2>
+
+        <div class="bento">
+          <article class="tile video-card" aria-label="Відео процедури BMS з Jeuderm">
+            <div class="video-caption">Practical demo • 00:37</div>
+            <video controls playsinline preload="metadata" poster="assets/video-poster.jpg" controlslist="nodownload" disablepictureinpicture>
+              <source src="assets/bms-seminar.mp4" type="video/mp4" />
+              Ваш браузер не підтримує відтворення відео.
+            </video>
+          </article>
+
+          <div class="right-column">
+            <article class="tile headline-tile">
+              <div class="right-kicker">Jeuderm × BMS Practical Seminar</div>
+              <p class="right-sub">Поєднайте БМС з високопептидною космецевтикою Jeuderm та отримайте готові професійні протоколи для своєї практики.</p>
+            </article>
+
+            <article class="tile date-tile" aria-label="24 вересня, Кропивницький">
+              <div class="date-big">24</div>
+              <div class="date-details">
+                <b>ВЕРЕСНЯ</b>
+                <span class="city">КРОПИВНИЦЬКИЙ</span>
+                <span class="seminar">Practical Seminar</span>
+              </div>
+            </article>
+
+            <article class="tile benefits-tile">
+              <div class="benefit-kicker">Що ви отримаєте на семінарі</div>
+              <ul class="benefit-list">
+                <li><span class="icon">⚡</span><span><strong>БМС + Jeuderm</strong> — готові схеми поєднання</span></li>
+                <li><span class="icon">👩‍⚕️</span><span><strong>Практичний показ</strong> — протокол на моделі</span></li>
+                <li><span class="icon">📈</span><span><strong>Більше можливостей</strong> — без купівлі нового обладнання</span></li>
+                <li><span class="icon">🧴</span><span><strong>Test-Zone</strong> — протестуйте Jeuderm особисто</span></li>
+                <li class="b2b"><span class="icon">📜</span><span><strong>Сертифікат + спеціальні B2B-умови</strong></span></li>
+              </ul>
+
+              <div class="care-tags" aria-label="Напрямки протоколів">
+                <span>Lifting</span><span>Tone</span><span>Recovery</span><span>Edema Care</span>
+              </div>
+              <button class="hero-cta" id="heroCta" type="button">Забронювати місце</button>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzitDwBkBLtCdvAVCrERX3uxfGTj-0Fpo36CddL7y0uYChkLygQhaUROmc7XC4VWGL2/exec';
+
+    const form = document.getElementById('leadForm');
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const honeypot = document.getElementById('companyWebsite');
+    const submitBtn = document.getElementById('submitBtn');
+    const formNote = document.getElementById('formNote');
+    const successBox = document.getElementById('successBox');
+    const sendErrorBox = document.getElementById('sendErrorBox');
+    const sentName = document.getElementById('sentName');
+    const sentPhone = document.getElementById('sentPhone');
+    const heroCta = document.getElementById('heroCta');
+    const nameError = document.getElementById('nameError');
+    const phoneError = document.getElementById('phoneError');
+
+    function showFieldError(input,errorEl,message){
+      input.classList.add('invalid');input.setAttribute('aria-invalid','true');errorEl.textContent=message;errorEl.classList.add('show');
+    }
+    function clearFieldError(input,errorEl){
+      input.classList.remove('invalid');input.removeAttribute('aria-invalid');errorEl.textContent='';errorEl.classList.remove('show');
+    }
+    function normalizeSpaces(value){return value.trim().replace(/\s+/g,' ')}
+
+    function validateName(){
+      const value=normalizeSpaces(nameInput.value);clearFieldError(nameInput,nameError);
+      if(!value){showFieldError(nameInput,nameError,'Вкажіть, будь ласка, ваше ім’я.');return false}
+      if(value.length<2){showFieldError(nameInput,nameError,'Ім’я має містити щонайменше 2 символи.');return false}
+      if(!/^[\p{L}'’\-\s]+$/u.test(value)){showFieldError(nameInput,nameError,'Використовуйте лише літери, пробіли, апостроф або дефіс.');return false}
+      nameInput.value=value;return true;
+    }
+
+    function validatePhone(){
+      const value=phoneInput.value.trim();const digits=value.replace(/\D/g,'');clearFieldError(phoneInput,phoneError);
+      if(!value){showFieldError(phoneInput,phoneError,'Вкажіть, будь ласка, номер телефону.');return false}
+      if(digits.length<9||digits.length>15){showFieldError(phoneInput,phoneError,'Перевірте номер телефону: має бути від 9 до 15 цифр.');return false}
+      return true;
+    }
+
+    nameInput.addEventListener('blur',validateName);phoneInput.addEventListener('blur',validatePhone);
+    nameInput.addEventListener('input',()=>clearFieldError(nameInput,nameError));phoneInput.addEventListener('input',()=>clearFieldError(phoneInput,phoneError));
+
+    heroCta.addEventListener('click',()=>{
+      document.getElementById('registration').scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(()=>nameInput.focus({preventScroll:true}),350);
+    });
+
+    form.addEventListener('submit',async(event)=>{
+      event.preventDefault();successBox.classList.remove('show');sendErrorBox.classList.remove('show');
+      if(honeypot.value){return}
+      const validName=validateName();const validPhone=validatePhone();
+      if(!validName||!validPhone){const firstInvalid=form.querySelector('.field.invalid');if(firstInvalid)firstInvalid.focus();return}
+
+      const params=new URLSearchParams(window.location.search);
+      const payload={
+        name:normalizeSpaces(nameInput.value),
+        phone:phoneInput.value.trim(),
+        event:'Jeuderm × BMS Practical Seminar — Kropyvnytskyi — 24.09',
+        source:'Landing Page',
+        utm_source:params.get('utm_source')||'',
+        utm_medium:params.get('utm_medium')||'',
+        utm_campaign:params.get('utm_campaign')||''
+      };
+
+      submitBtn.disabled=true;const originalText=submitBtn.textContent;submitBtn.textContent='НАДСИЛАЄМО…';
+      try{
+        await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+        sentName.textContent=payload.name;sentPhone.textContent=payload.phone;successBox.classList.add('show');
+        form.reset();form.style.display='none';formNote.style.display='none';
+      }catch(error){console.error(error);sendErrorBox.classList.add('show')}
+      finally{submitBtn.disabled=false;submitBtn.textContent=originalText}
+    });
+  </script>
+</body>
+</html>
