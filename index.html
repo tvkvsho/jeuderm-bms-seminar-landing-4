@@ -181,19 +181,23 @@
     }
 
     @media (max-width:620px){
+      html,body{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+      .page{height:auto!important;min-height:100svh!important;overflow:visible!important}
+      .split{height:auto!important;min-height:0!important;display:block}
       .left{min-height:auto;padding:22px 19px 28px}.brands{gap:12px}.brands .deluxe{width:140px}.brands .jeuderm{width:102px}.brands .rule{height:25px}
       .copy{margin-top:32px}h1{font-size:39px}.date-row{margin-top:21px}.date-num{font-size:72px}.date-meta b{font-size:20px}
       .value-card{margin-top:17px;padding:14px 15px 14px 17px}.value-card p{font-size:14px}
       .lead-wrap{margin-top:34px;padding-top:0}.form-note{display:block}.form-note strong{display:block;margin-top:3px}
-      .hero{padding:12px;background:linear-gradient(155deg,#eef6f6 0%,#dde7ec 47%,#dfe0f0 100%)}
+      .hero{height:auto!important;min-height:0!important;overflow:visible!important;padding:12px 12px calc(40px + env(safe-area-inset-bottom));background:linear-gradient(155deg,#eef6f6 0%,#dde7ec 47%,#dfe0f0 100%)}
       .hero-main-title{font-size:clamp(32px,9.6vw,52px)}
-      .bento{display:flex;flex-direction:column;gap:11px;height:auto}
+      .bento{display:flex;flex-direction:column;gap:11px;height:auto!important;min-height:0!important;overflow:visible}
       .right-column{display:contents}
-      .headline-tile{order:1;padding:20px;border-radius:21px}.right-sub{font-size:13px}
-      .date-tile{order:2;min-height:112px;padding:16px 18px;border-radius:21px}.date-big{font-size:65px}.date-details b{font-size:20px}
-      .video-card{order:3;width:min(74vw,300px);align-self:center;max-height:none;border-radius:24px;box-shadow:0 18px 48px rgba(34,64,82,.15)}
-      .benefits-tile{order:4;padding:19px;border-radius:21px}.benefit-kicker{font-size:28px}.benefit-list{gap:9px}.benefit-list li{font-size:12px;grid-template-columns:24px 1fr;padding:11px}.benefit-list .icon{font-size:17px}
-      .care-tags{padding-top:13px}.care-tags span{font-size:8px;padding:8px 12px}.hero-cta{height:50px;margin-top:15px}
+      .headline-tile{order:1;flex:none;padding:20px;border-radius:21px}.right-sub{font-size:13px}
+      .date-tile{order:2;flex:none;min-height:112px;padding:16px 18px;border-radius:21px}.date-big{font-size:65px}.date-details b{font-size:20px}
+      .video-card{order:3;flex:none;width:min(74vw,300px);height:auto;align-self:center;max-height:none;border-radius:24px;box-shadow:0 18px 48px rgba(34,64,82,.15)}
+      .benefits-tile{order:4;flex:none;height:auto!important;min-height:max-content!important;padding:19px 19px 26px;border-radius:21px;overflow:visible}
+      .benefit-kicker{font-size:28px}.benefit-list{gap:9px}.benefit-list li{font-size:12px;grid-template-columns:24px 1fr;padding:11px}.benefit-list .icon{font-size:17px}
+      .care-tags{margin-top:14px;padding-top:0}.care-tags span{font-size:8px;padding:8px 12px}.hero-cta{height:50px;margin-top:15px}
     }
 
     @media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
