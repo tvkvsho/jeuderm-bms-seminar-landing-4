@@ -136,6 +136,9 @@
     .video-card video,.video-poster-button,.video-poster-button img{width:100%;height:100%;object-fit:cover;background:#101313}
     .video-card video{border:0}
     .video-poster-button{display:block;position:relative;border:0;padding:0;margin:0;cursor:pointer;background:#101313;color:#fff;overflow:hidden}
+    .video-card:not(.is-playing) #videoPlayer{display:none!important}
+    .video-card.is-playing .video-poster-button{display:none!important}
+    .video-card.is-playing #videoPlayer{display:block!important}
     .video-poster-button img{position:absolute;inset:0}
     .video-poster-button::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,19,.02) 0%,rgba(7,17,19,0) 60%,rgba(7,17,19,.18) 100%);pointer-events:none}
     .video-play{position:absolute;left:50%;top:50%;z-index:4;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;transform:translate(-50%,-50%);background:rgba(20,35,40,.72);border:1px solid rgba(255,255,255,.38);box-shadow:0 12px 30px rgba(0,0,0,.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
@@ -277,13 +280,13 @@
         <h2 class="hero-main-title">Підсилюйте можливості БМС<br>разом із Jeuderm</h2>
 
         <div class="bento">
-          <article class="tile video-card" aria-label="Відео процедури BMS з Jeuderm">
+          <article class="tile video-card" id="videoCard" aria-label="Відео процедури BMS з Jeuderm">
             <div class="video-caption">Practical demo • 00:37</div>
             <button class="video-poster-button" id="videoLaunch" type="button" aria-label="Відтворити відео процедури">
               <img src="assets/video-poster.jpg" alt="Превʼю практичної процедури BMS з Jeuderm" loading="eager" decoding="async" />
               <span class="video-play" aria-hidden="true"></span>
             </button>
-            <video id="videoPlayer" controls playsinline preload="none" controlslist="nodownload" disablepictureinpicture hidden data-src="assets/bms-seminar.mp4">
+            <video id="videoPlayer" controls playsinline preload="none" controlslist="nodownload" disablepictureinpicture poster="assets/video-poster.jpg" data-src="assets/bms-seminar.mp4">
               Ваш браузер не підтримує відтворення відео.
             </video>
           </article>
@@ -342,16 +345,29 @@
     const phoneError = document.getElementById('phoneError');
     const videoLaunch = document.getElementById('videoLaunch');
     const videoPlayer = document.getElementById('videoPlayer');
+    const videoCard = document.getElementById('videoCard');
 
     videoLaunch.addEventListener('click', async () => {
-      videoLaunch.hidden = true;
-      videoPlayer.hidden = false;
-      if (!videoPlayer.src) {
-        videoPlayer.src = videoPlayer.dataset.src;
+      if (!videoPlayer.getAttribute('src')) {
+        videoPlayer.setAttribute('src', videoPlayer.dataset.src);
         videoPlayer.load();
       }
-      try { await videoPlayer.play(); } catch (error) { console.debug('Video play requires user interaction.', error); }
+
+      // Switch from the static preview to the real player.
+      // A CSS state is used instead of the HTML hidden attribute because
+      // some mobile browsers can let author display rules override hidden.
+      videoCard.classList.add('is-playing');
+
+      try {
+        await videoPlayer.play();
+      } catch (error) {
+        console.debug('Video play requires user interaction.', error);
+        // The native controls remain visible so the user can start playback manually.
+      }
     });
+
+    // If playback ends, keep the native player visible on the final frame.
+    // Clicking replay in the native controls works normally.
 
     function showFieldError(input,errorEl,message){
       input.classList.add('invalid');input.setAttribute('aria-invalid','true');errorEl.textContent=message;errorEl.classList.add('show');
